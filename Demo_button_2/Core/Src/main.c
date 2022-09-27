@@ -96,8 +96,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	if (HAL_GPIO_ReadPin(BUTTON_1_GPIO_Port, BUTTON_1_Pin) == 1){
+	if (HAL_GPIO_ReadPin(BUTTON_1_GPIO_Port, BUTTON_1_Pin) == 0){ //0: push-down; 1: push-up
 		toggleLed(led_state);
+		led_state = !led_state;
 	} else {
 		//DO NOTHING
 	}
@@ -184,7 +185,6 @@ void toggleLed(int state){
 		}
 		default: break;
 	}
-	state = !state;
 }
 /* USER CODE END 4 */
 
