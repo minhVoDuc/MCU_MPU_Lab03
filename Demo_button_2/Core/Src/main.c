@@ -99,6 +99,10 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	if (timer_flag == 1){
+		subKeyProcess();
+		HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
+	}
   }
   /* USER CODE END 3 */
 }
