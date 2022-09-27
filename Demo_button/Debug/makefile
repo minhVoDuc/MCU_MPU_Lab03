@@ -50,6 +50,9 @@ default.size.stdout \
 OBJDUMP_LIST += \
 Demo_button.list \
 
+OBJCOPY_HEX += \
+Demo_button.hex \
+
 OBJCOPY_BIN += \
 Demo_button.bin \
 
@@ -61,8 +64,8 @@ all: main-build
 main-build: Demo_button.elf secondary-outputs
 
 # Tool invocations
-Demo_button.elf: $(OBJS) $(USER_OBJS) D:\Documents\STM32CubeIDE\MCU_MPU_Lab03\Demo_button\STM32F103C6UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Demo_button.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\Documents\STM32CubeIDE\MCU_MPU_Lab03\Demo_button\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Demo_button.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Demo_button.elf: $(OBJS) $(USER_OBJS) D:\Documents\STM32CubeIDE\MCU_MPU_Lab03\MCU_MPU_Lab03\Demo_button\STM32F103C6UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Demo_button.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\Documents\STM32CubeIDE\MCU_MPU_Lab03\MCU_MPU_Lab03\Demo_button\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Demo_button.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -76,6 +79,11 @@ Demo_button.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
+Demo_button.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "Demo_button.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 Demo_button.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "Demo_button.bin"
 	@echo 'Finished building: $@'
@@ -83,10 +91,10 @@ Demo_button.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 
 # Other Targets
 clean:
-	-$(RM) $(SIZE_OUTPUT)$(OBJDUMP_LIST)$(EXECUTABLES)$(OBJS)$(S_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(OBJCOPY_BIN) Demo_button.elf
+	-$(RM) $(OBJCOPY_HEX)$(SIZE_OUTPUT)$(OBJDUMP_LIST)$(EXECUTABLES)$(OBJS)$(S_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(OBJCOPY_BIN) Demo_button.elf
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX) $(OBJCOPY_BIN)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
