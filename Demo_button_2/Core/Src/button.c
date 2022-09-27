@@ -17,6 +17,7 @@ int TimeOutForKeyPress =  500;
 
 void subKeyProcess(){
 	//TODO
+	HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 }
 
 void getKeyInput(){
