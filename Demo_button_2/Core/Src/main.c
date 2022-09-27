@@ -86,7 +86,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-  int led_state = 0; //0: ON; 1: OFF
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
