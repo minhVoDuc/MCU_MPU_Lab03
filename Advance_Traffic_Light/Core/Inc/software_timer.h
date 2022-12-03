@@ -9,7 +9,7 @@
 #define INC_SOFTWARE_TIMER_H_
 
 #define MAX_TIMER 	4
-#define CYCLE 		1
+#define CYCLE 		10
 #define TIME_UNIT	1000
 
 #define TRAFFIC_1ST	0

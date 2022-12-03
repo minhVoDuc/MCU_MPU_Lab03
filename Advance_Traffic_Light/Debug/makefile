@@ -64,8 +64,8 @@ all: main-build
 main-build: Advance_Traffic_Light.elf secondary-outputs
 
 # Tool invocations
-Advance_Traffic_Light.elf: $(OBJS) $(USER_OBJS) D:\Documents\STM32CubeIDE\MCU_MPU_Lab03\Advance_Traffic_Light\STM32F103C6UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Advance_Traffic_Light.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\Documents\STM32CubeIDE\MCU_MPU_Lab03\Advance_Traffic_Light\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Advance_Traffic_Light.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Advance_Traffic_Light.elf: $(OBJS) $(USER_OBJS) D:\Documents\STM32CubeIDE\MCU_MPU_Lab03\MCU_MPU_Lab03\Advance_Traffic_Light\STM32F103C6UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Advance_Traffic_Light.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\Documents\STM32CubeIDE\MCU_MPU_Lab03\MCU_MPU_Lab03\Advance_Traffic_Light\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Advance_Traffic_Light.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
